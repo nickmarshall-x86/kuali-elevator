@@ -11,7 +11,7 @@ angular.module('app')
             $scope.elevatorResponses = [];
             
             $scope.requestFloor = function(){
-                if($scope.numberOfFloors < $scope.requestedFloor){
+                if($scope.requestedFloor <= $scope.numberOfFloors){
                     $scope.controllerState = CONTROLLERSTATE_AWAITING_RESPONSE;
                     $scope.$broadcast('elevatorController:requestCurrentFloor',{});
                 }
@@ -19,7 +19,7 @@ angular.module('app')
             
             $scope.$on('elevator:currentFloorResponse', function(event, data){
                 $scope.elevatorResponses.push(data);
-                if($scope.elevatorResponses.length === $scope.numberOfFloors){
+                if($scope.elevatorResponses.length === $scope.numberOfElevators){
                     var closestElevator = $scope.findClosestElevator();
                     if(closestElevator){
                         $scope.controllerState = CONTROLLERSTATE_WAITING_FOR_MOVE;

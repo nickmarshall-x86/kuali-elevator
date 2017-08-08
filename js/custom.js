@@ -1,5 +1,6 @@
 const CONTROLLERSTATE_WAITING_FOR_INPUT = 'WaitingForInput';
 const CONTROLLERSTATE_WAITING_FOR_MOVE = 'WaitingForElevatorToMove';
+const CONTROLLERSTATE_AWAITING_RESPONSE = 'WaitingForElevatorsToRespond';
 
 const ELEVATORSTATE_GOOD = "Good";
 const ELEVATORSTATE_OUTOFSERVICE = "OutOfService";

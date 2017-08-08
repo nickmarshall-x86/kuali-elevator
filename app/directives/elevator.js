@@ -27,9 +27,9 @@ angular.module('app')
 
             $scope.$on('elevatorController:moveToFloor', function(event, data){
                 if(data.elevatorId === $scope.elevatorId){
-                    $scope.currentFloor = data.requestedFloor
+                    $scope.currentFloor = data.requestedFloor;
+                    $scope.$emit('elevator:moveConfirmed');
                 }
-                $scope.$emit('elevator:moveConfirmed');
             });
         }
     }
