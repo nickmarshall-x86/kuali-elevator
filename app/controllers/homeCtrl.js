@@ -3,5 +3,6 @@ angular.module('app')
     $scope.initializeSimulation = function(){
         $rootScope.numberOfElevators = $scope.numberOfElevators;
         $rootScope.numberOfFloors = $scope.numberOfFloors;
+        window.location = "#!/simulate";
     }
 }]);

@@ -8,4 +8,8 @@ app.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'app/views/homeView.html',
         controller: 'homeCtrl'
     });
+    $routeProvider.when('/simulate', {
+        templateUrl: "app/views/simulationView.html",
+        controller: "simulationCtrl"
+    });
 }]);
