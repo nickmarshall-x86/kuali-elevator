@@ -3,6 +3,7 @@ const CONTROLLERSTATE_WAITING_FOR_MOVE = 'WaitingForElevatorToMove';
 const CONTROLLERSTATE_AWAITING_RESPONSE = 'WaitingForElevatorsToRespond';
 
 const ELEVATORSTATE_GOOD = "Good";
+const ELEVATORSTATE_MOVING = "Moving";
 const ELEVATORSTATE_OUTOFSERVICE = "OutOfService";
 
 function generateGuid() {
