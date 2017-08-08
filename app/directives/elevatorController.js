@@ -9,6 +9,7 @@ angular.module('app')
         controller: function($scope){
             $scope.controllerState = CONTROLLERSTATE_WAITING_FOR_INPUT;
             $scope.elevatorResponses = [];
+            $scope.elevatorMessages = [];
             
             $scope.requestFloor = function(){
                 if($scope.requestedFloor <= $scope.numberOfFloors){
@@ -36,6 +37,7 @@ angular.module('app')
             $scope.$on('elevator:moveConfirmed', function(event, data){
                 $scope.controllerState = CONTROLLERSTATE_WAITING_FOR_INPUT;
                 $scope.elevatorResponses = [];
+                $scope.elevatorMessages.push("Elevator: " + data.elevatorId + " has moved to Floor: " + data.floor)
             });
             
             $scope.findClosestElevator = function(){
@@ -47,6 +49,7 @@ angular.module('app')
                             var difference = Math.abs(response.floor - $scope.requestedFloor);
                             if(difference < currentDistance){
                                 closestFloor = response;
+                                currentDistance = difference;
                             }
                         }
                     }else{

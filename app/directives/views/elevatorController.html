@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-4">
-        <input type="number" class="form-control" ng-model="requestedFloor" />
+        <input type="number" class="form-control" placeholder="Floor To Request" ng-model="requestedFloor" />
     </div>
     <div class="col-md-4">
         <div class="btn btn-info" ng-click="requestFloor()">Request</div>
@@ -9,4 +9,12 @@
 
 <div ng-repeat="i in getArray(numberOfElevators) track by $index">
     <elevator elevator-id="$index"></elevator>
+</div>
+
+<div class="well">
+    <div class="row" ng-repeat="message in elevatorMessages">
+        <div class="col-md-12">
+            {{message}}
+        </div>
+    </div>
 </div>
