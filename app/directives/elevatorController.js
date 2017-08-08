@@ -18,14 +18,17 @@ angular.module('app')
                 }
             }
             
+            // TODO: Add Timer to execute tick on elevators
+            
             $scope.$on('elevator:currentFloorResponse', function(event, data){
                 $scope.elevatorResponses.push(data);
                 if($scope.elevatorResponses.length === $scope.numberOfElevators){
                     var closestElevator = $scope.findClosestElevator();
                     if(closestElevator){
                         $scope.controllerState = CONTROLLERSTATE_WAITING_FOR_MOVE;
-                        $scope.$broadcast('elevatorController:moveToFloor',{
+                        $scope.$broadcast('elevatorController:addStop',{
                             "elevatorId": closestElevator.id,
+                            "currentFloor": $scope.currentFloor,
                             "requestedFloor": $scope.requestedFloor
                         });
                     }else{
@@ -34,10 +37,9 @@ angular.module('app')
                 }
             });
             
-            $scope.$on('elevator:moveConfirmed', function(event, data){
-                $scope.controllerState = CONTROLLERSTATE_WAITING_FOR_INPUT;
+            $scope.$on('elevator:message', function(event, data){
                 $scope.elevatorResponses = [];
-                $scope.elevatorMessages.push("Elevator: " + data.elevatorId + " has moved to Floor: " + data.floor)
+                $scope.elevatorMessages.push("Elevator: " + data.elevatorId + " " + data.message);
             });
             
             $scope.findClosestElevator = function(){
@@ -47,7 +49,7 @@ angular.module('app')
                     if(closestFloor){
                         if(response.state = ELEVATORSTATE_GOOD){
                             var difference = Math.abs(response.floor - $scope.requestedFloor);
-                            if(difference < currentDistance){
+                            if(difference == 0 || difference < currentDistance){  //TODO:  Add preference to moving elevator 
                                 closestFloor = response;
                                 currentDistance = difference;
                             }
